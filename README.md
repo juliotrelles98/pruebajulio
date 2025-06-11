@@ -8,11 +8,12 @@ Este repositorio incluye un script de ejemplo para realizar agrupamiento (cluste
 - pandas
 - scikit-learn
 - matplotlib
+- flask
 
 Puedes instalar las dependencias con:
 
 ```bash
-pip install pandas scikit-learn matplotlib
+pip install pandas scikit-learn matplotlib flask
 ```
 
 ## Uso
@@ -24,3 +25,13 @@ python kmeans_analysis.py
 ```
 
 Se imprimirán los centroides, la inercia del modelo y se mostrará una gráfica con los clusters obtenidos.
+
+## Servidor web
+
+También puedes iniciar un pequeño servidor Flask que expone los resultados en formato JSON y una página web para visualizarlos:
+
+```bash
+python app.py
+```
+
+Abre tu navegador en `http://localhost:5000` para ver la página `index.html` que consume los datos del endpoint `/clusters`.

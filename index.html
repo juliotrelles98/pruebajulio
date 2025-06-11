@@ -1,9 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+    <meta charset="utf-8">
+    <title>Clusters</title>
 </head>
 <body>
- <video src="https://www.youtube.com/watch?v=kN1XP-Bef7w" controls > </video>
+    <h1>Resultado de KMeans</h1>
+    <div id="inertia"></div>
+    <h2>Centroides</h2>
+    <table id="centroids" border="1"></table>
+
+    <script>
+        fetch('/clusters')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('inertia').textContent = 'Inercia: ' + data.inertia;
+
+                const table = document.getElementById('centroids');
+                const headerRow = document.createElement('tr');
+                data.features.forEach(f => {
+                    const th = document.createElement('th');
+                    th.textContent = f;
+                    headerRow.appendChild(th);
+                });
+                table.appendChild(headerRow);
+
+                data.centroids.forEach(row => {
+                    const tr = document.createElement('tr');
+                    data.features.forEach(f => {
+                        const td = document.createElement('td');
+                        td.textContent = row[f].toFixed(2);
+                        tr.appendChild(td);
+                    });
+                    table.appendChild(tr);
+                });
+            });
+    </script>
 </body>
 </html>
